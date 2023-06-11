@@ -17,37 +17,24 @@ const Navbar = () => {
   };
   const navItems = (
     <>
-      <NavLink className="btn m-1 p-2" to="/">
+      <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/">
         Home
       </NavLink>
 
-      <NavLink className="btn m-1" to="/instructors">
+      <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/instructors">
         Instructors
       </NavLink>
 
-      <NavLink className="btn m-1" to="/class">
+      <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/class">
         Class
       </NavLink>
 
-      {user ? <NavLink className="btn btn-primary m-1">Dashboard</NavLink> : ""}
-
-      {user ? (
-        <NavLink
-          onClick={handleLogout}
-          className="btn btn-warning text-white m-1"
-        >
-          Logout
-        </NavLink>
-      ) : (
-        <NavLink className="btn btn-primary m-1" to="/sign-in">
-          Login
-        </NavLink>
-      )}
+      {user ? <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">Dashboard</NavLink> : ""}
     </>
   );
 
   return (
-    <div className=" navbar fixed z-10 text-white bg-white bg-opacity-50 max-w-screen-xl">
+    <div className=" navbar fixed z-10 text-white bg-gray-600 bg-opacity-50 max-w-screen-xl">
       {/* ----------------- Nav Bar small Area Here------------- */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -86,17 +73,37 @@ const Navbar = () => {
 
       {/* user update Profile pic Area */}
       <div className="navbar-end mr-4 lg:mr-0">
-        <div
-          className=" tooltip  tooltip-primary font-bold tooltip-bottom"
-          data-tip={user?.displayName}
-        >
-          {user ? (
-            <>
-              <img className="w-12 rounded-full" src={user.photoURL} alt="" />
-            </>
-          ) : (
-            ""
-          )}
+        <div className="flex items-center mr-2">
+          <div
+            className=" tooltip  tooltip-primary font-bold tooltip-bottom"
+            data-tip={user?.displayName}
+          >
+            {user ? (
+              <>
+                <img
+                  className="w-12 mr-3 rounded-full"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </>
+            ) : (
+              ""
+            )}
+          </div>
+          <div>
+            {user ? (
+              <NavLink
+                onClick={handleLogout}
+                className="btn btn-warning btn-outline border-0 bg-white border-b-4 text-white m-1"
+              >
+                Logout
+              </NavLink>
+            ) : (
+              <NavLink className="btn btn-outline bg-white border-b-4 border-0 btn-primary m-1" to="/sign-in">
+                Login
+              </NavLink>
+            )}
+          </div>
         </div>
       </div>
     </div>
