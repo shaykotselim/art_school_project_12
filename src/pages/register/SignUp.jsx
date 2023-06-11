@@ -1,33 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import login from "../../assets/login.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
-// import 'sweetalert2/src/sweetalert2.scss'
+import { FiEye, FiEyeOff } from "react-icons/fi";
+
 const SignUp = () => {
   const { createUser, profileUpdate } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
   const onSubmit = (data) => {
-    const { name, email, password, confirmPassword, photo} = data;
-    // console.log(data);
+    const { name, email, password, confirmPassword, photo } = data;
     createUser(email, password)
       .then((res) => {
         const loggedUser = res.user;
-        console.log(loggedUser);
-        profileUpdate(loggedUser, name, photo)
+        profileUpdate(loggedUser, name, photo);
         Swal.fire({
-            icon: 'success',
-            title: 'Done',
-            text: 'Create Your Account Successfully !',
-        
-          })
+          icon: 'success',
+          title: 'Done',
+          text: 'Create Your Account Successfully !',
+        });
       })
       .catch((error) => {
         console.log(error.message);
       });
     reset();
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevValue) => !prevValue);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowPassword1((prevValue) => !prevValue);
+  };
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -53,31 +62,44 @@ const SignUp = () => {
                   placeholder="Type Your Email Here"
                   {...register("email", { required: true })}
                 />
+
                 <input
                   className="border-2 w-full rounded-lg h-12 px-4 my-2"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Type Your Password Here"
                   {...register("password", { required: true })}
                 />
+                <span
+                  onClick={togglePasswordVisibility}
+                  className="absolute mt-7 right-12 cursor-pointer"
+                >
+                  {showPassword ? <FiEye /> : <FiEyeOff />}
+                </span>
+
                 <input
                   className="border-2 w-full rounded-lg h-12 px-4 my-2"
                   placeholder="Type Your Confirm-Password Here"
-                  type="password"
+                  type={showPassword1 ? "text" : "password"}
                   {...register("confirmPassword", { required: true })}
                 />
+                <span
+                  className="absolute mt-7 right-12 cursor-pointer"
+                  onClick={toggleConfirmPasswordVisibility}
+                >
+                  {showPassword1 ? <FiEye /> : <FiEyeOff />}
+                </span>
+
                 <input
                   className="border-2 w-full rounded-lg h-12 px-4 my-2"
-                 
-                  placeholder="Type your Photo url"
+                  placeholder="Type your Photo URL"
                   {...register("photo", { required: true })}
                 />
+
                 <select className="border-2 p-1 rounded-lg" {...register("gender")}>
                   <option value="male">male</option>
                   <option value="female">female</option>
                   <option value="other">other</option>
                 </select>
-
-                {/* {errors.password && <p>This field is required</p>} */}
 
                 <input className="btn btn-primary w-full my-2" type="submit" />
               </form>

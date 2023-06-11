@@ -1,46 +1,54 @@
-import React, {  useContext } from "react";
+import React, { useState, useContext } from "react";
 import login from "../../assets/login.png";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from 'react-icons/fc';
+import {FiEye,FiEyeOff  } from 'react-icons/fi';
 import Swal from "sweetalert2";
+
 const LogIn = () => {
-    const {signIn, googleSignIn} = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+
   const onSubmit = (data) => {
-    const {email, password} = data;
+    const { email, password } = data;
     signIn(email, password)
-    .then(res=>{
+      .then(res => {
         const loggedUser = res.user;
         console.log(loggedUser);
         Swal.fire({
-            icon: 'success',
-            title: 'Go Ahead',
-            text: 'Login Successfully!'
-          })
-    })
-    .catch(error=>{
+          icon: 'success',
+          title: 'Go Ahead',
+          text: 'Login Successfully!'
+        })
+      })
+      .catch(error => {
         console.log(error.message);
-    })
+      })
     reset();
   };
-  const handleGoogleSignIn =()=>{
-    googleSignIn()
-    .then(res=>{
-      console.log(res.user);
-      Swal.fire({
-        icon: 'success',
-        title: 'Congratulations',
-        text: 'Google Login Successfully!',
-       
-      })
-    })
-    .catch(error=>{
-      console.log(error.message);
-    })
 
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(res => {
+        console.log(res.user);
+        Swal.fire({
+          icon: 'success',
+          title: 'Congratulations',
+          text: 'Google Login Successfully!',
+        })
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
   }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -61,23 +69,33 @@ const LogIn = () => {
                   {...register("email")}
                 />
 
-                <input
-                  className="border-2 w-full rounded-lg h-12 px-4 my-2"
-                  placeholder="Type Your Password Here"
-                  {...register("password")}
-                />
-
-                {/* {errors.password && <p>This field is required</p>} */}
+                <div className="relative">
+                  <input
+                    className="border-2 w-full rounded-lg h-12 px-4 my-2 pr-12"
+                    placeholder="Type Your Password Here"
+                    type={showPassword ? "text" : "password"}
+                    {...register("password")}
+                  />
+                  <span
+                    className="absolute top-7 right-3 cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <FiEye/> :<FiEyeOff/>}
+                  </span>
+                </div>
 
                 <input className="btn btn-primary w-full my-2" type="submit" />
               </form>
 
-                <div className="text-center font-medium text-lg">
-                    <h1>Don't have an account? <Link className="text-primary" to="/sign-up">Sign-Up</Link> </h1>
-                </div>
-                <div className="text-center">
-                  <button onClick={handleGoogleSignIn} className="flex justify-center items-center bg-primary text-white text-xl font-medium p-2 w-full rounded-lg"><span><FcGoogle/></span><span>Sing In With Google</span></button>
-                </div>
+              <div className="text-center font-medium text-lg">
+                <h1>Don't have an account? <Link className="text-primary" to="/sign-up">Sign-Up</Link> </h1>
+              </div>
+              <div className="text-center">
+                <button onClick={handleGoogleSignIn} className="flex justify-center items-center bg-primary text-white text-xl font-medium p-2 w-full rounded-lg">
+                  <span><FcGoogle /></span>
+                  <span>Sing In With Google</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -87,4 +105,3 @@ const LogIn = () => {
 };
 
 export default LogIn;
- 
