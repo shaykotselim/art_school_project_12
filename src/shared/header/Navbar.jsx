@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/art-school-logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [darkMode, setDarkMode] = useState(false);
   const handleLogout = () => {
     logOut().then(() => {
       Swal.fire({
@@ -15,6 +16,9 @@ const Navbar = () => {
       });
     });
   };
+  const toggleDarkMode = () =>{
+    setDarkMode(!darkMode);
+  }
   const navItems = (
     <>
       <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/">
@@ -30,6 +34,10 @@ const Navbar = () => {
       </NavLink>
 
       {user ? <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">Dashboard</NavLink> : ""}
+      
+      <button className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" onClick={toggleDarkMode}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
     </>
   );
 
