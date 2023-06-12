@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/art-school-logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaBeer, FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -16,26 +17,44 @@ const Navbar = () => {
       });
     });
   };
-  const toggleDarkMode = () =>{
+  const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-  }
+  };
   const navItems = (
     <>
-      <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/">
+      <NavLink
+        className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1"
+        to="/"
+      >
         Home
       </NavLink>
 
-      <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/instructors">
+      <NavLink
+        className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1"
+        to="/instructors"
+      >
         Instructors
       </NavLink>
 
-      <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" to="/class">
+      <NavLink
+        className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1"
+        to="/class"
+      >
         Class
       </NavLink>
 
-      {user ? <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">Dashboard</NavLink> : ""}
-      
-      <button className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1" onClick={toggleDarkMode}>
+      {user ? (
+        <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">
+          Dashboard
+        </NavLink>
+      ) : (
+        ""
+      )}
+
+      <button
+        className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1"
+        onClick={toggleDarkMode}
+      >
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
     </>
@@ -82,6 +101,18 @@ const Navbar = () => {
       {/* user update Profile pic Area */}
       <div className="navbar-end mr-4 lg:mr-0">
         <div className="flex items-center mr-2">
+          <div>
+            {user ? (
+              <>
+                <button className="btn btn-neutral mr-2 border-b-4 btn-outline bg-white border-0">
+                  <FaShoppingCart/>
+                  <div className="badge badge-secondary">+ {0}</div>
+                </button>
+              </>
+            ) : (
+              ""
+            )}
+          </div>
           <div
             className=" tooltip  tooltip-primary font-bold tooltip-bottom"
             data-tip={user?.displayName}
@@ -107,7 +138,10 @@ const Navbar = () => {
                 Logout
               </NavLink>
             ) : (
-              <NavLink className="btn btn-outline bg-white border-b-4 border-0 btn-primary m-1" to="/sign-in">
+              <NavLink
+                className="btn btn-outline bg-white border-b-4 border-0 btn-primary m-1"
+                to="/sign-in"
+              >
                 Login
               </NavLink>
             )}

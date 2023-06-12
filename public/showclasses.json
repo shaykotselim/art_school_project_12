@@ -1,12 +1,13 @@
 [
   {
-    "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkDEo-PFTAYKtVwun4CelpiaWRx-8QoPjtHdmRTPqACbbs-64FljI2XT7tTutRi6pqSlg&usqp=CAU",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkDEo-PFTAYKtVwun4CelpiaWRx-8QoPjtHdmRTPqACbbs-64FljI2XT7tTutRi6pqSlg&usqp=CAU",
     "name": "Mastering Realism: Portrait Painting",
     "duration": "12 weeks",
     "total_students": 85,
     "rating": 4.9,
     "price": 250,
-    "instructor_name": "Andy Warhol"
+    "instructor_name": "Andy Warhol",
+    "total_seats": 96
   },
   {
     "image": "https://static.dw.com/image/19562592_605.jpg",
@@ -15,7 +16,8 @@
     "total_students": 90,
     "rating": 4.8,
     "price": 280,
-    "instructor_name": "Salvador Dali"
+    "instructor_name": "Salvador Dali",
+    "total_seats": 92
   },
   {
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQykE6vlP6uppK0S7j4wd9_OOAjQIKq7ysrIA&usqp=CAU",
@@ -24,7 +26,8 @@
     "total_students": 75,
     "rating": 4.7,
     "price": 200,
-    "instructor_name": "Alphonse Mucha"
+    "instructor_name": "Alphonse Mucha",
+    "total_seats": 85
   },
   {
     "image": "https://www.accessart.org.uk/wp-content/uploads/2013/02/092.jpg",
@@ -33,7 +36,8 @@
     "total_students": 95,
     "rating": 4.6,
     "price": 320,
-    "instructor_name": "Pablo Picasso"
+    "instructor_name": "Pablo Picasso",
+    "total_seats": 99
   },
   {
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyjbDTGl8YGbikfpJjKgbm5DYzUZ9kpfek2faSRf6xYZRro4l0NepPnqzenULtJnI8VU0&usqp=CAU",
@@ -42,7 +46,8 @@
     "total_students": 70,
     "rating": 4.9,
     "price": 300,
-    "instructor_name": "Marcel Duchamp"
+    "instructor_name": "Marcel Duchamp",
+    "total_seats": 100
   },
   {
     "image": "https://wp.dailybruin.com/images/2021/01/web.ae_.makermedium.4.AF_.jpg",
@@ -51,7 +56,8 @@
     "total_students": 80,
     "rating": 4.7,
     "price": 280,
-    "instructor_name": "Chuck Close"
+    "instructor_name": "Chuck Close",
+    "total_seats": 80
   },
   {
     "image": "https://i.ytimg.com/vi/yGfy0Rw1D3k/maxresdefault.jpg",
@@ -60,7 +66,8 @@
     "total_students": 70,
     "rating": 4.5,
     "price": 180,
-    "instructor_name": "Jacques-Louis"
+    "instructor_name": "Jacques-Louis",
+    "total_seats": 70
   },
   {
     "image": "https://cdn.conceptartempire.com/images/11/6295/ruins-digital-painting-concept-art.jpg",
@@ -69,7 +76,8 @@
     "total_students": 100,
     "rating": 4.6,
     "price": 350,
-    "instructor_name": "Georges Seurat"
+    "instructor_name": "Georges Seurat",
+    "total_seats": 110
   },
   {
     "image": "https://cdn.conceptartempire.com/images/06/512/chennethkang-form-beetle-sketches.jpg",
@@ -78,7 +86,8 @@
     "total_students": 95,
     "rating": 4.8,
     "price": 380,
-    "instructor_name": "Pablo Picasso"
+    "instructor_name": "Pablo Picasso",
+    "total_seats": 100
   },
   {
     "image": "https://image.isu.pub/200720082146-605e633b0ffaec65086c66ead8871b74/jpg/page_1.jpg",
@@ -87,6 +96,7 @@
     "total_students": 80,
     "rating": 4.7,
     "price": 320,
-    "instructor_name": "Gustave Courbet"
+    "instructor_name": "Gustave Courbet",
+    "total_seats": 90
   }
 ]

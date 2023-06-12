@@ -1,83 +1,92 @@
 [
-    {
+  {
       "name": "Françoise Pétrovitch",
       "experience": "10 years",
       "totalClasses": 50,
       "availableSeats": 5,
       "rating": 4.5,
-      "image": "https://i.ibb.co/0qYY1yS/licensed-image.jpg"
-    },
-    {
+      "image": "https://i.ibb.co/0qYY1yS/licensed-image.jpg",
+      "email": "francoise@example.com"
+  },
+  {
       "name": "Okuda",
       "experience": "8 years",
       "totalClasses": 70,
       "availableSeats": 12,
       "rating": 4.5,
-      "image": "https://hips.hearstapps.com/hmg-prod/images/okuda-1525542994.jpg"
-    },
-    {
+      "image": "https://hips.hearstapps.com/hmg-prod/images/okuda-1525542994.jpg",
+      "email": "okuda@example.com"
+  },
+  {
       "name": "Maria Esmar",
       "experience": "12 years",
       "totalClasses": 80,
       "availableSeats": 3,
       "rating": 4.9,
-      "image": "https://www.kazoart.com/img/m/1455-portrait.jpg?v=6291"
-    },
-    {
+      "image": "https://www.kazoart.com/img/m/1455-portrait.jpg?v=6291",
+      "email": "maria@example.com"
+  },
+  {
       "name": "Yoshimoto Nara",
       "experience": "6 years",
       "totalClasses": 60,
       "availableSeats": 8,
       "rating": 4.7,
-      "image": "https://www.artnews.com/wp-content/uploads/2021/04/Screen-Shot-2021-04-27-at-8.32.48-AM-e1619526841439.png"
-    },
-    {
+      "image": "https://www.artnews.com/wp-content/uploads/2021/04/Screen-Shot-2021-04-27-at-8.32.48-AM-e1619526841439.png",
+      "email": "yoshimoto@example.com"
+  },
+  {
       "name": "Jon One",
       "experience": "9 years",
       "totalClasses": 55,
       "availableSeats": 2,
       "rating": 4.8,
-      "image": "https://i.ibb.co/1RVb9wt/images-1.jpg"
-    },
-    {
+      "image": "https://i.ibb.co/1RVb9wt/images-1.jpg",
+      "email": "jon@example.com"
+  },
+  {
       "name": "Yaacov Agam",
       "experience": "7 years",
       "totalClasses": 65,
       "availableSeats": 10,
       "rating": 4.6,
-      "image": "https://www.parkwestgallery.com/wp-content/uploads/2013/04/agam.png"
-    },
-    {
+      "image": "https://www.parkwestgallery.com/wp-content/uploads/2013/04/agam.png",
+      "email": "yaacov@example.com"
+  },
+  {
       "name": "Nando Kallweit",
       "experience": "11 years",
       "totalClasses": 75,
       "availableSeats": 6,
       "rating": 4.9,
-      "image": "https://capitalculturegallery.com/wp-content/uploads/2020/07/Portrait-Nando-Kallweit-683x1024.jpg"
-    },
-    {
+      "image": "https://capitalculturegallery.com/wp-content/uploads/2020/07/Portrait-Nando-Kallweit-683x1024.jpg",
+      "email": "nando@example.com"
+  },
+  {
       "name": "Reda Amalou",
       "experience": "5 years",
       "totalClasses": 55,
       "availableSeats": 7,
       "rating": 4.7,
-      "image": "https://i.ibb.co/31FcBmV/download.jpg"
-    },
-    {
+      "image": "https://i.ibb.co/31FcBmV/download.jpg",
+      "email": "reda@example.com"
+  },
+  {
       "name": "Ivan Tzonev",
       "experience": "10 years",
       "totalClasses": 70,
       "availableSeats": 4,
       "rating": 4.8,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZOlimGbXgURvlA7pbB19QJoycLn0gUOv32KODzKC-Gw&s"
-    },
-    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZOlimGbXgURvlA7pbB19QJoycLn0gUOv32KODzKC-Gw&s",
+      "email": "ivan@example.com"
+  },
+  {
       "name": "Kaws",
       "experience": "8 years",
       "totalClasses": 60,
       "availableSeats": 5,
       "rating": 4.5,
-      "image": "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRN2IiXHbST9FRl6fhStGNkFVbub0MCLtA79eXYQ-IBIcfJs-kDsTrNxa6_16yHTyMY"
-    }
-  ]
-  
+      "image": "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRN2IiXHbST9FRl6fhStGNkFVbub0MCLtA79eXYQ-IBIcfJs-kDsTrNxa6_16yHTyMY",
+      "email": "kaws@example.com"
+  }
+]

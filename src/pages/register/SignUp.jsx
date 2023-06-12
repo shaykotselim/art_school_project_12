@@ -8,11 +8,12 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const SignUp = () => {
   const { createUser, profileUpdate } = useContext(AuthContext);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
+
   const onSubmit = (data) => {
-    const { name, email, password, confirmPassword, photo } = data;
+    const { name, email, password, photo } = data;
     createUser(email, password)
       .then((res) => {
         const loggedUser = res.user;
@@ -20,7 +21,7 @@ const SignUp = () => {
         Swal.fire({
           icon: 'success',
           title: 'Done',
-          text: 'Create Your Account Successfully !',
+          text: 'Create Your Account Successfully!',
         });
       })
       .catch((error) => {
@@ -67,7 +68,18 @@ const SignUp = () => {
                   className="border-2 w-full rounded-lg h-12 px-4 my-2"
                   type={showPassword ? "text" : "password"}
                   placeholder="Type Your Password Here"
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: true,
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                    pattern: {
+                      value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"|,.<>/?]).*$/,
+                      message:
+                        "Password must contain at least one capital letter and one special character",
+                    },
+                  })}
                 />
                 <span
                   onClick={togglePasswordVisibility}
@@ -75,12 +87,18 @@ const SignUp = () => {
                 >
                   {showPassword ? <FiEye /> : <FiEyeOff />}
                 </span>
+                {errors.password && (
+                  <span className="text-red-500">{errors.password.message}</span>
+                )}
 
                 <input
                   className="border-2 w-full rounded-lg h-12 px-4 my-2"
                   placeholder="Type Your Confirm-Password Here"
                   type={showPassword1 ? "text" : "password"}
-                  {...register("confirmPassword", { required: true })}
+                  {...register("confirmPassword", {
+                    required: true,
+                    validate: (value) => value === watch("password") || "Passwords do not match",
+                  })}
                 />
                 <span
                   className="absolute mt-7 right-12 cursor-pointer"
@@ -88,6 +106,9 @@ const SignUp = () => {
                 >
                   {showPassword1 ? <FiEye /> : <FiEyeOff />}
                 </span>
+                {errors.confirmPassword && (
+                  <span className="text-red-500">{errors.confirmPassword.message}</span>
+                )}
 
                 <input
                   className="border-2 w-full rounded-lg h-12 px-4 my-2"
