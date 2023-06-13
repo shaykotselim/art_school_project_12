@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import login from "../../assets/login.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from 'react-icons/fc';
 import {FiEye,FiEyeOff  } from 'react-icons/fi';
@@ -11,6 +11,11 @@ const LogIn = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+ 
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     const { email, password } = data;
@@ -23,11 +28,13 @@ const LogIn = () => {
           title: 'Go Ahead',
           text: 'Login Successfully!'
         })
+        navigate(from, {replace:true});
       })
       .catch(error => {
         console.log(error.message);
       })
     reset();
+    
   };
 
   const handleGoogleSignIn = () => {
