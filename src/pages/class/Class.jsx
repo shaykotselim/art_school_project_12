@@ -5,7 +5,7 @@ import DisplayClass from "./DisplayClass";
 const Class = () => {
     const [displayClass, setDisplayClass] = useState([]);
     useEffect(()=>{
-        fetch('showclasses.json')
+        fetch('http://localhost:5000/showclass')
         .then(res=> res.json())
         .then(data=> setDisplayClass(data))
     },[])
