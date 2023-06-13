@@ -4,17 +4,17 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from 'react-icons/fc';
-import {FiEye,FiEyeOff  } from 'react-icons/fi';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Swal from "sweetalert2";
 
 const LogIn = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const [showPassword, setShowPassword] = useState(false);
- 
+
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
@@ -26,15 +26,19 @@ const LogIn = () => {
         Swal.fire({
           icon: 'success',
           title: 'Go Ahead',
-          text: 'Login Successfully!'
-        })
-        navigate(from, {replace:true});
+          text: 'Login Successful!'
+        });
+        navigate(from, { replace: true });
       })
       .catch(error => {
         console.log(error.message);
-      })
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Invalid email or password!'
+        });
+      });
     reset();
-    
   };
 
   const handleGoogleSignIn = () => {
@@ -44,17 +48,23 @@ const LogIn = () => {
         Swal.fire({
           icon: 'success',
           title: 'Congratulations',
-          text: 'Google Login Successfully!',
-        })
+          text: 'Google Login Successful!',
+        });
+        navigate(from, { replace: true });
       })
       .catch(error => {
         console.log(error.message);
-      })
-  }
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Google Login Failed!'
+        });
+      });
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
   return (
     <div>
@@ -64,7 +74,7 @@ const LogIn = () => {
             <img className="w-[700px] rounded-2xl" src={login} alt="" />
           </div>
 
-          <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
               <h1 className="text-center font-bold text-primary text-5xl my-8">
                 Login Here!
@@ -87,7 +97,7 @@ const LogIn = () => {
                     className="absolute top-7 right-3 cursor-pointer"
                     onClick={togglePasswordVisibility}
                   >
-                    {showPassword ? <FiEye/> :<FiEyeOff/>}
+                    {showPassword ? <FiEye /> : <FiEyeOff />}
                   </span>
                 </div>
 
@@ -100,7 +110,7 @@ const LogIn = () => {
               <div className="text-center">
                 <button onClick={handleGoogleSignIn} className="flex justify-center items-center bg-primary text-white text-xl font-medium p-2 w-full rounded-lg">
                   <span><FcGoogle /></span>
-                  <span>Sing In With Google</span>
+                  <span>Sign In With Google</span>
                 </button>
               </div>
             </div>
