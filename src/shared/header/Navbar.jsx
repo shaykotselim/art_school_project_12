@@ -4,9 +4,11 @@ import logo from "../../assets/art-school-logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaBeer, FaShoppingCart } from 'react-icons/fa';
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
   const [darkMode, setDarkMode] = useState(false);
   const handleLogout = () => {
     logOut().then(() => {
@@ -106,7 +108,7 @@ const Navbar = () => {
               <>
                 <button className="btn btn-neutral mr-2 border-b-4 btn-outline bg-white border-0">
                   <FaShoppingCart/>
-                  <div className="badge badge-secondary">+ {0}</div>
+                  <div className="badge badge-secondary">+ {cart?.length || 0}</div>
                 </button>
               </>
             ) : (
