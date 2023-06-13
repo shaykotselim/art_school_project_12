@@ -4,12 +4,17 @@ import ban2 from "../../assets/pexels-vanessa-garcia-6325952.jpg";
 import InstructorCard from "./InstructorCard";
 
 const Instructors = () => {
-    const [instructors, setInstructors] = useState([]);
-    useEffect(()=>{
-        fetch("http://localhost:5000/showinstructor")
-        .then(res=>res.json())
-        .then(data=> setInstructors(data));
-    },[])
+  const [instructors, setInstructors] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/showinstructor")
+      .then((res) => res.json())
+      .then((data) => {
+        setInstructors(data);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div>
@@ -22,16 +27,23 @@ const Instructors = () => {
         <img className="space-x-reverse col-span-2" src={ban} alt="" />
       </div>
       {/* -----------Instructor Banner Area End------------- */}
-    
-        <div className="mt-20 lg:grid gap-4 grid-cols-3">
-        {
-            instructors.map(instructor=><InstructorCard
-                key={instructor.name}
-                instructor={instructor}
-            ></InstructorCard>)
-        }
-        </div>
 
+      <div className="mt-20 lg:grid gap-4 grid-cols-3">
+        {loading ? (
+          // Render the loading spinner while data is being fetched
+          <div className="flex justify-center items-center h-32">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-b-4 border-orange-500"></div>
+          </div>
+        ) : (
+          // Render the processed data once it's loaded
+          instructors.map((instructor) => (
+            <InstructorCard
+              key={instructor.name}
+              instructor={instructor}
+            ></InstructorCard>
+          ))
+        )}
+      </div>
     </div>
   );
 };
