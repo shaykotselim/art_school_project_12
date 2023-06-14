@@ -6,6 +6,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
@@ -44,20 +45,40 @@ const LogIn = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then(res => {
-        console.log(res.user);
-        Swal.fire({
-          icon: 'success',
-          title: 'Congratulations',
-          text: 'Google Login Successful!',
-        });
+        const loggedInUser = res.user;
+        console.log(loggedInUser);
+        const saveUser = {name: loggedInUser.displayName, email:loggedInUser.email}
+        fetch('http://localhost:5000/users',{
+          method: 'POST', 
+          headers: {
+            'content-type':'application/json'
+          }, 
+          body: JSON.stringify(saveUser)
+        })
+        .then(res => res.json())
+        .then(data =>{
+          if(data.insertedId){
+            Swal.fire({
+              icon: 'success',
+              title: 'Done',
+              text: 'Create Your Account Successfully!',
+            });
+          }
+        })
+        // console.log(res.user);
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Congratulations',
+        //   text: 'Google Login Successful!',
+        // });
         navigate(from, { replace: true });
       })
       .catch(error => {
-        console.log(error.message);
+        // console.log(error.message);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Google Login Failed!'
+        text: 'Google Login Failed!'
         });
       });
   };
@@ -68,6 +89,9 @@ const LogIn = () => {
 
   return (
     <div>
+      <Helmet>
+                <title>Art-School || Sign-In</title>
+            </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="lg:flex gap-8">
           <div>

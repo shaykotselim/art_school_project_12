@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ban from "../../assets/cool-background.svg"
 import ban2 from "../../assets/classbanner.jpg"
 import DisplayClass from "./DisplayClass";
+import { Helmet } from "react-helmet-async";
 
 const Class = () => {
   const [displayClass, setDisplayClass] = useState([]);
@@ -18,6 +19,9 @@ const Class = () => {
 
   return (
     <div>
+      <Helmet>
+                <title>Art-School || Class</title>
+      </Helmet>
       {/*------------------------------- Classes Banner Area Start----------------*/}
       <div className="grid grid-cols-3 items-center">
         <p className="absolute top-36 right-[14%] lg:top-[50%] lg:right-[30%] text-xl lg:text-3xl text-white font-bold bg-black rounded p-4 lg:p-8">

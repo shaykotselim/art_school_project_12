@@ -1,17 +1,21 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import login from "../../assets/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const { createUser, profileUpdate } = useContext(AuthContext);
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const onSubmit = (data) => {
     const { name, email, password, photo } = data;
     createUser(email, password)
@@ -41,7 +45,7 @@ const SignUp = () => {
            
           })
        
-        navigate('/')
+          navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -59,6 +63,9 @@ const SignUp = () => {
 
   return (
     <div>
+      <Helmet>
+                <title>Art-School || Sign-Up</title>
+      </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="lg:flex items-center gap-8">
           <div>
