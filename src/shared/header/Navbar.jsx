@@ -46,7 +46,7 @@ const Navbar = () => {
       </NavLink>
 
       {user ? (
-        <NavLink className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">
+        <NavLink to="/dashboard/mycart" className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">
           Dashboard
         </NavLink>
       ) : (
@@ -106,9 +106,9 @@ const Navbar = () => {
           <div>
             {user ? (
               <>
-                <button className="btn btn-neutral mr-2 border-b-4 btn-outline bg-white border-0">
+                <button className="btn btn-xm btn-neutral mr-2 border-b-4 btn-outline bg-white border-0">
                   <FaShoppingCart/>
-                  <div className="badge badge-secondary">+ {cart?.length || 0}</div>
+                  <div className="badge-md rounded badge-secondary">+{cart?.length || 0}</div>
                 </button>
               </>
             ) : (
@@ -135,13 +135,13 @@ const Navbar = () => {
             {user ? (
               <NavLink
                 onClick={handleLogout}
-                className="btn btn-warning btn-outline border-0 bg-white border-b-4 text-white m-1"
+                className="btn btn-xs lg:btn btn-warning lg:btn-outline lg:border-0 lg:bg-white lg:border-b-4 text-white m-1"
               >
                 Logout
               </NavLink>
             ) : (
               <NavLink
-                className="btn btn-outline bg-white border-b-4 border-0 btn-primary m-1"
+                className="btn lg:btn btn-outline bg-white border-b-4 border-0 btn-primary m-1"
                 to="/sign-in"
               >
                 Login
