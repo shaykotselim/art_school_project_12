@@ -67,7 +67,7 @@ const MyCart = () => {
                 row={row}
                 key={row._id}
               >
-                <td><span className="badge badge-ghost badge-sm">
+                <td><span className="lg:badge lg:badge-ghost badge-sm">
                     {index+1}
                   </span></td>
                 <td>
@@ -83,12 +83,12 @@ const MyCart = () => {
                   </div>
                 </td>
                 <td>
-                  <span className="badge badge-ghost badge-sm">
-                    {row.name}
+                  <span className="lg:badge lg:badge-ghost badge-sm">
+                {row.name}
                   </span>
                 </td>
-                <td className=""> <span className="badge badge-ghost badge-sm">
-                    $ {row.price}
+                <td className=""><span className="lg:badge lg:badge-ghost badge-sm">
+                    ${row.price}
                   </span></td>
                 <td>
                   <button onClick={()=>handleDelete(row)} className="btn btn-ghost text-red-500"><FaTrash/></button>

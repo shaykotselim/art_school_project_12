@@ -16,7 +16,7 @@ const Dashboard = () => {
         {/* Page content here */}
         <Outlet/>
         <label htmlFor="my-drawer-2" 
-        className="btn btn-primary drawer-button lg:hidden">Dashboard</label>
+        className="absolute top-4 right-0 btn-sm btn btn-neutral drawer-button lg:hidden">Menu</label>
 
         
       </div>
