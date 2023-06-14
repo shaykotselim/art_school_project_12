@@ -13,7 +13,7 @@ const PrivetRoute = ({children}) => {
     if(user){
             return children;
         }
-    return <Navigate to="/sign-up" state={{from: location}} replace></Navigate>
+    return <Navigate to="/sign-in" state={{from: location}} replace></Navigate>
 };
 
 export default PrivetRoute;

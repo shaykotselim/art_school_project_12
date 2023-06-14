@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import login from "../../assets/login.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -11,18 +11,37 @@ const SignUp = () => {
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
-
+  const navigate = useNavigate()
   const onSubmit = (data) => {
     const { name, email, password, photo } = data;
     createUser(email, password)
       .then((res) => {
+
         const loggedUser = res.user;
-        profileUpdate(loggedUser, name, photo);
-        Swal.fire({
-          icon: 'success',
-          title: 'Done',
-          text: 'Create Your Account Successfully!',
-        });
+        profileUpdate(loggedUser, name, photo)
+          .then(()=>{
+            const saveUser = {name: data.name, email:data.email}
+            fetch('http://localhost:5000/users',{
+              method: 'POST', 
+              headers: {
+                'content-type':'application/json'
+              }, 
+              body: JSON.stringify(saveUser)
+            })
+            .then(res => res.json())
+            .then(data =>{
+              if(data.insertedId){
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Done',
+                  text: 'Create Your Account Successfully!',
+                });
+              }
+            })
+           
+          })
+       
+        navigate('/')
       })
       .catch((error) => {
         console.log(error.message);
