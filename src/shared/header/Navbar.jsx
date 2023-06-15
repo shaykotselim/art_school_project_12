@@ -3,11 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/art-school-logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
-import { FaBeer, FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
+import UseInstructor from "../../hooks/UseInstructor";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const [cart] = useCart();
   const [darkMode, setDarkMode] = useState(false);
   const handleLogout = () => {
@@ -22,6 +24,8 @@ const Navbar = () => {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = UseInstructor()
   const navItems = (
     <>
       <NavLink
@@ -45,12 +49,21 @@ const Navbar = () => {
         Class
       </NavLink>
 
-      {user ? (
+      {!user || isAdmin || isInstructor|| loading?'': (
         <NavLink to="/dashboard/mycart" className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">
           Dashboard
         </NavLink>
-      ) : (
-        ""
+      
+      )}
+      {isAdmin && (
+        <NavLink to="/dashboard/allusers" className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">
+          Dashboard
+        </NavLink>
+      )}
+      {isInstructor && (
+        <NavLink to="/dashboard/addclass" className="btn btn-outline bg-white border-0 border-b-4 btn-primary m-1">
+          Dashboard
+        </NavLink>
       )}
 
       <button
@@ -104,15 +117,13 @@ const Navbar = () => {
       <div className="navbar-end mr-4 lg:mr-0">
         <div className="flex items-center mr-2">
           <div>
-            {user ? (
+            {user && isAdmin || isInstructor ? '' : (
               <>
                 <button className="btn btn-xm btn-neutral mr-2 border-b-4 btn-outline bg-white border-0">
                   <FaShoppingCart/>
                   <div className="badge-md rounded badge-secondary">+{cart?.length || 0}</div>
                 </button>
               </>
-            ) : (
-              ""
             )}
           </div>
           <div

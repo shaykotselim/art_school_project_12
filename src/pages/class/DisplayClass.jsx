@@ -6,7 +6,7 @@ import useCart from "../../hooks/useCart";
 
 const DisplayClass = ({ classDis }) => {
 
-    const {name,image, total_seats, price, instructor_name, total_students  } = classDis
+    const {class_name,image, total_seats, price, instructor_name, total_students  } = classDis
     const available_seats = total_seats - total_students;
     const {user, loading} = useContext(AuthContext);
     const [, refetch] = useCart()
@@ -66,9 +66,10 @@ const DisplayClass = ({ classDis }) => {
         />
       </div>
       <div>
-        <p className="text-lg font-bold"><span>Name Of Class:</span> {name}</p>
+        <p className="text-lg font-bold"><span>Name Of Class:</span> {class_name}</p>
         <p className="text-md font-medium"><span >Instructor:</span> {instructor_name}</p>
         <p className="text-md font-medium"><span >Available seats:</span> {available_seats}</p>
+        
       </div>
       <div className="font-medium ">
         {/* <p className="">Class Duration:{duration}</p> */}

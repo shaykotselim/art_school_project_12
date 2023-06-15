@@ -10,6 +10,10 @@ import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../layout/Dashboard";
 import MyCart from "../pages/dashboard/myCart/MyCart";
 import AllUsers from "../pages/dashboard/allUsers/AllUsers";
+import AddClass from "../pages/dashboard/addClass/AddClass";
+import MngClass from "../pages/dashboard/mngClass/mngClass";
+import MyClass from "../pages/dashboard/myCart/myClass/MyClass";
+import Payment from "../pages/dashboard/payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +56,22 @@ const router = createBrowserRouter([
             {
                 path: 'allusers',
                 element: <AllUsers/>
+            },
+            {
+                path:'addclass',
+                element:<AddClass/>
+            },
+            {
+                path:"manageclass",
+                element:<MngClass/>
+            },
+            {
+                path:"myclass",
+                element:<MyClass/>
+            },
+            {
+                path:"payment",
+                element:<Payment/>
             }
         ]
     }

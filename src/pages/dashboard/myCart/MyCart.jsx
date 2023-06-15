@@ -2,6 +2,7 @@ import React from "react";
 import useCart from "../../../hooks/useCart";
 import { FaTrash } from 'react-icons/fa';
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const MyCart = () => {
   const [cart, refetch] = useCart();
 //   const [name, image, price] = cart;
@@ -47,7 +48,7 @@ const MyCart = () => {
       <div className="flex justify-evenly rounded-l-none text-white mt-24 mb-12">
         <h1 className="text-xl">Total Added Class: {cart.length || 0}</h1>
         <h1 className="text-xl">Total Price: ${total}</h1>
-        <button className="btn btn-sm">Pay Now</button>
+        <Link to="/dashboard/payment" className="btn btn-sm">Pay Now</Link>
       </div>
       <div className="overflow-x-auto">
         <table className="table">

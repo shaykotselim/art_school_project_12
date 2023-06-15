@@ -1,17 +1,80 @@
 import { useQuery } from "@tanstack/react-query";
-import { space } from "postcss/lib/list";
+// import { space } from "postcss/lib/list";
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
-  const handleMakeAdmin = () => {};
+  const handleMakeAdmin = (row) => {
+    fetch(`http://localhost:5000/users/admin/${row._id}`, {
+        method:"PATCH",
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data);
+        if(data.modifiedCount){
+            refetch();
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: `${row.name} is an Admin Now`,
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+    })
+  };
+
+  const handlemakeInstructor = (row)=>{
+    fetch(`http://localhost:5000/users/instructor/${row._id}`, {
+      method:"PATCH",
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.modifiedCount){
+        refetch();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: `${row.name} is an Instructor Now`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+  }
   const handleDelete = (user) => {
-    console.log(user);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to Delete this!!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+         fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE'
+         })
+         .then(res=> res.json())
+         .then(data=>{
+            if(data.deletedCount > 0){
+                refetch()
+                Swal.fire(
+                    'Deleted!',
+                    'Your data has been deleted.',
+                    'success'
+                    )
+            }
+         })
+        }
+      })
   };
   return (
     <div className="w-full h-full bg-gradient-to-r from-violet-400 to-pink-400">
@@ -39,6 +102,7 @@ const AllUsers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
+              <th>Role Action</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -64,15 +128,24 @@ const AllUsers = () => {
                     {row.email}
                   </span>
                 </td>
-                <td className="">
-                  <button className="lg:badge lg:badge-warning btn btn-sm badge-sm">
-                    {row.role === "admin" ? (
-                      "Admin"
-                    ) : (
-                      <span onClick={() => handleMakeAdmin(row._id)}>
-                        Instructor
-                      </span>
-                    )}
+
+                <td>
+                  <button className="lg:badge lg:badge-primary btn btn-sm badge-sm">
+                  {row.role?
+                    <span>
+                    {row.role}
+                  </span>:'student'
+                  }
+                  </button>
+                </td>
+
+                <td className="flex gap-3">
+                  <button onClick={()=> handleMakeAdmin(row)} className="lg:badge lg:badge-warning btn btn-sm badge-sm">
+                    <span>Admin</span>
+                  </button>
+
+                  <button onClick={()=>handlemakeInstructor(row)} className="lg:badge lg:badge-warning btn btn-sm badge-sm">
+                      <span>Instructor</span>
                   </button>
                 </td>
                 <td>
