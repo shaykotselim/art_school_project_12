@@ -15,7 +15,7 @@ const CheckoutForm = ({cart, price}) => {
   const [transactionId, setTransactionId] = useState("");
   
   useEffect(()=>{
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('https://art-school-server-nine.vercel.app/create-payment-intent', {
         method:"POST",
         headers:{
             'content-type':'application/json'
@@ -77,7 +77,7 @@ const CheckoutForm = ({cart, price}) => {
         coursesName: cart.map((course) => course.name),
         coursesId: cart.map((course) => course._id),
       };
-      fetch('http://localhost:5000/payments', {
+      fetch('https://art-school-server-nine.vercel.app/payments', {
         method:"POST",
         headers:{
             'content-type':'application/json'

@@ -18,7 +18,7 @@ const AddClass = () => {
     const addClass = {
         image, class_name, duration,total_seats, instructor_name, instructor_email, rating, price, total_students
     }
-    fetch('http://localhost:5000/showclass', {
+    fetch('https://art-school-server-nine.vercel.app/showclass', {
         method:"POST",
         headers:{
             'content-type':'application/json'

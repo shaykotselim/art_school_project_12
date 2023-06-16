@@ -9,7 +9,7 @@ const Class = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/showclass')
+    fetch('https://art-school-server-nine.vercel.app/showclass')
       .then(res => res.json())
       .then(data => {
         setDisplayClass(data);

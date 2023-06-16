@@ -7,11 +7,11 @@ import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
+    const res = await fetch("https://art-school-server-nine.vercel.app/users");
     return res.json();
   });
   const handleMakeAdmin = (row) => {
-    fetch(`http://localhost:5000/users/admin/${row._id}`, {
+    fetch(`https://art-school-server-nine.vercel.app/users/admin/${row._id}`, {
         method:"PATCH",
     })
     .then(res=>res.json())
@@ -31,7 +31,7 @@ const AllUsers = () => {
   };
 
   const handlemakeInstructor = (row)=>{
-    fetch(`http://localhost:5000/users/instructor/${row._id}`, {
+    fetch(`https://art-school-server-nine.vercel.app/users/instructor/${row._id}`, {
       method:"PATCH",
     })
     .then(res=>res.json())
@@ -59,7 +59,7 @@ const AllUsers = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-         fetch(`http://localhost:5000/users/${user._id}`, {
+         fetch(`https://art-school-server-nine.vercel.app/users/${user._id}`, {
             method: 'DELETE'
          })
          .then(res=> res.json())

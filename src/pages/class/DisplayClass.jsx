@@ -20,7 +20,7 @@ const DisplayClass = ({ classDis }) => {
       if(user && user.email ){
 
         const cartItem = { name, image, price, email: user.email}
-        fetch('http://localhost:5000/carts',{
+        fetch('https://art-school-server-nine.vercel.app/carts',{
           method:"POST", 
           headers: {
             'content-type': 'application/json'

@@ -9,7 +9,7 @@ const Instructors = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/showinstructor")
+    fetch("https://art-school-server-nine.vercel.app/showinstructor")
       .then((res) => res.json())
       .then((data) => {
         setInstructors(data);
