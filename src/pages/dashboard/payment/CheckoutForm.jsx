@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const CheckoutForm = ({cart, price}) => {
   const stripe = useStripe();
@@ -87,7 +87,7 @@ const CheckoutForm = ({cart, price}) => {
       .then(res=>res.json())
       .then(data=> {
         console.log(data);
-        if (res.data.insertedResult) {
+        if (data.insertedResult) {
             // payment info updated
             Swal.fire({
               position: "top-end",
@@ -132,7 +132,7 @@ const CheckoutForm = ({cart, price}) => {
         }}
       />
       <p className="font-bold text-red-600 bg-white">{cardError}</p>
-      <button className="btn btn-primary" type="submit" disabled={!stripe || !clientSecret || processing}>pay</button>
+      <button className="btn btn-primary" type="submit" disabled={!stripe || clientSecret }>pay</button>
     </form>
   )
 

@@ -13,7 +13,8 @@ const PrivetRoute = ({children}) => {
     if(user){
             return children;
         }
-    return <Navigate to="/sign-in" state={{from: location}} replace></Navigate>
+        if(!user && loading){return <Navigate to="/sign-in" state={{from: location}} replace></Navigate>}
+    
 };
 
 export default PrivetRoute;
