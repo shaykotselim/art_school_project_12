@@ -4,7 +4,7 @@ import ClassesCard from "./ClassesCard";
 const PopularClasses = () => {
   const [showClasses, setShowClasses] = useState([]);
   useEffect(() => {
-    fetch("showclasses.json")
+    fetch("https://art-school-server-nine.vercel.app/showclass")
       .then((res) => res.json())
       // .then(data=> console.log(data))
       .then((data) => setShowClasses(data));

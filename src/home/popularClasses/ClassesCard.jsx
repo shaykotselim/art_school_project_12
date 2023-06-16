@@ -2,7 +2,7 @@ import React from "react";
 
 const ClassesCard = ({ showClass }) => {
   const {
-    name,
+    class_name,
     image,
     duration,
     total_students,
@@ -20,10 +20,10 @@ const ClassesCard = ({ showClass }) => {
         />
       </div>
       <div>
-        <p className="text-lg font-medium">Nmae Of Class: {name}</p>
+        <p className="text-lg font-medium">Name Of Class: {class_name}</p>
       </div>
       <div className="font-medium ">
-        <p className="">Class Duration:{duration}</p>
+        <p className="">Class Duration:{duration}weeks</p>
         <p>Total Students: {total_students}</p>
       </div>
       <div className=" ">
