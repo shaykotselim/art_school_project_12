@@ -13,7 +13,6 @@ const InstructorCard = ({ instructor }) => {
         <h1 className="text-xl font-medium">Name: {name}</h1>
         <p className="font-medium">Experience: {experience}</p>
         <p className="font-medium">Total Classes: {totalClasses}</p>
-        <p className="font-medium">Available Seats: {availableSeats}</p>
         <p className="font-medium">Rating: {rating}</p>
         <Rating
           readonly

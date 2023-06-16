@@ -4,7 +4,7 @@ import InstructorCard from "./instructorCard/InstructorCard";
 const PopularInstructor = () => {
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch("instructors.json")
+    fetch("https://art-school-server-nine.vercel.app/showinstructor")
       .then((res) => res.json())
       .then((data) => setInstructors(data));
   }, []);
